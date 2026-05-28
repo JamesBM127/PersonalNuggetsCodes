@@ -95,7 +95,7 @@ namespace JBMDatabase.UnitOfWork
         {
             IEnumerable<EntityEntry> trackedItens = Track();
 
-            foreach (EntityEntry entry in Track())
+            foreach (EntityEntry entry in trackedItens)
             {
                 if (entry.State != EntityState.Unchanged)
                     entry.State = EntityState.Unchanged;

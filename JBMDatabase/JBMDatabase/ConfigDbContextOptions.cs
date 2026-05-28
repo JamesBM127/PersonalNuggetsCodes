@@ -38,7 +38,7 @@ namespace JBMDatabase
         public static DbContextOptions<TContext> GetDbContextOptions<TContext>(this DbContextOptions<TContext> options,
                                                                                     DatabaseOptions database,
                                                                                     string connectionString)
-                                                              where TContext : DbContext
+                                                                                    where TContext : DbContext
         {
             options = new ServiceCollection().GetDbContextOptions<TContext>(database, connectionString);
             return options;

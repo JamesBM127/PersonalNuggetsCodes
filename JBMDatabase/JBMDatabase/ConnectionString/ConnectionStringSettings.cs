@@ -1,7 +1,7 @@
-﻿using JBM.DeserializeJson;
-using JBMDatabase.ConnectionString.Model;
+﻿using JBMDatabase.ConnectionString.Model;
 using JBMDatabase.Validation;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Text;
 
 
@@ -27,7 +27,8 @@ namespace JBMDatabase.ConnectionString
 
         public static string CreateConnectionString(this ConnectionStringModel connectionStringModel, IConfiguration configuration, string jsonSection)
         {
-            connectionStringModel = configuration.ToCSharp<ConnectionStringModel>(jsonSection);
+
+            connectionStringModel = JsonConvert.DeserializeObject<ConnectionStringModel>(jsonSection);
 
             return connectionStringModel.CreateConnectionString();
         }

@@ -129,6 +129,19 @@ namespace JBMDatabase.Repos
             return entities;
         }
 
+        public async Task<IReadOnlyCollection<TEntity>> ListAsync<TEntity>(Func<IQueryable<TEntity>, IQueryable<TEntity>>? queryBuilder = null, bool tracking = true) where TEntity : BaseEntity
+        {
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+
+            if (!tracking)
+                query = query.AsNoTracking();
+
+            if (queryBuilder != null)
+                query = queryBuilder(query);
+
+            return await query.ToListAsync();
+        }
+
         public virtual bool Update<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
             bool modified = false;

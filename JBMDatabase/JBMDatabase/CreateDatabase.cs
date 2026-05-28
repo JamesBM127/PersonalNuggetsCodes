@@ -10,6 +10,7 @@ namespace JBMDatabase
     public static class CreateDatabase
     {
         #region Create and AddDbContext
+        #region Calls
         public static async Task<bool> EnsureCreateAsync<TContext>(this IServiceCollection services,
                                                                    string connectionString,
                                                                    DatabaseOptions database = DatabaseOptions.InMemoryDatabase,
@@ -60,6 +61,9 @@ namespace JBMDatabase
             return await EnsureCreateEncapsulationAsync<TContext>(services, connectionString, database, trackingBehavior);
         }
 
+        #endregion
+
+        #region Encapsulation
         private static async Task<bool> EnsureCreateEncapsulationAsync<TContext>(IServiceCollection services,
                                                                                  string connectionString,
                                                                                  DatabaseOptions databaseOptions,
@@ -188,6 +192,7 @@ namespace JBMDatabase
             return dbContext;
         }
 
+        #endregion
         #endregion
 
         #region AddDbContext

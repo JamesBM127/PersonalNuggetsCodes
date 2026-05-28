@@ -7,81 +7,81 @@ namespace JBMDatabase.Business
 {
     public abstract class BaseBusiness : IBaseBusiness
     {
-        private readonly IUoW Repository;
+        private readonly IUoW UoW;
 
-        public BaseBusiness(IUoW repository)
+        public BaseBusiness(IUoW uoW)
         {
-            Repository = repository;
+            UoW = uoW;
         }
 
         public async Task<bool> AddAsync<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
-            return await Repository.AddAsync(entity);
+            return await UoW.AddAsync(entity);
         }
 
         public async Task AddAsync<TEntity>(IEnumerable<TEntity> entities) where TEntity : BaseEntity
         {
-            await Repository.AddAsync(entities);
+            await UoW.AddAsync(entities);
         }
 
         public async Task<TEntity> GetAsync<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : BaseEntity
         {
-            return await Repository.GetAsync(expression);
+            return await UoW.GetAsync(expression);
         }
 
         public async Task<IReadOnlyCollection<TEntity>> ListAsync<TEntity>(Expression<Func<TEntity, bool>>? expression = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null) where TEntity : BaseEntity
         {
-            return await Repository.ListAsync(expression, include);
+            return await UoW.ListAsync(expression, include);
         }
 
         public bool Update<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
-            return Repository.Update(entity);
+            return UoW.Update(entity);
         }
 
         public void Update<TEntity>(IEnumerable<TEntity> entities) where TEntity : BaseEntity
         {
-            Repository.Update(entities);
+            UoW.Update(entities);
         }
 
         public async Task<object> DeleteAsync<TEntity>(Guid id, bool returnObject = false) where TEntity : BaseEntity
         {
-            return await Repository.DeleteAsync<TEntity>(id, returnObject);
+            return await UoW.DeleteAsync<TEntity>(id, returnObject);
         }
 
         public async Task<object> DeleteAsync<TEntity>(Expression<Func<TEntity, bool>>? expression, bool returnObject = false) where TEntity : BaseEntity
         {
-            return await Repository.DeleteAsync(expression, returnObject);
+            return await UoW.DeleteAsync(expression, returnObject);
         }
 
         public bool Delete<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
-            return Repository.Delete(entity);
+            return UoW.Delete(entity);
         }
 
         public async Task<bool> CommitAsync(bool toCommit, bool clearTrack = false)
         {
-            return await Repository.CommitAsync(toCommit, clearTrack);
+            return await UoW.CommitAsync(toCommit, clearTrack);
         }
 
         public async Task<List<TEntity>> CommitAsync<TEntity>(bool toCommit, bool clearTrack = true) where TEntity : BaseEntity
         {
-            return await Repository.CommitAsync<TEntity>(toCommit, clearTrack);
+            return await UoW.CommitAsync<TEntity>(toCommit, clearTrack);
         }
 
         public void Detach<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
-            Repository.Detach(entity);
+            UoW.Detach(entity);
         }
 
         public void ClearTrack()
         {
-            Repository.ClearTrack();
+            UoW.ClearTrack();
         }
 
         public IEnumerable<EntityEntry> TrackedItens()
         {
-            return Repository.Track();
+            return UoW.Track();
         }
     }
 }
