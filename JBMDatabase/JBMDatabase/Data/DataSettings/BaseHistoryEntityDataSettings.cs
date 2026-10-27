@@ -13,11 +13,16 @@ namespace JBMDatabase.Data.DataSettings
                 model.Property(x => x.HistoryType)
                      .HasColumnName("History Type")
                      .HasColumnType("varchar(8)")
-                     .HasColumnOrder(98)
+                     .HasColumnOrder(97)
                      .IsRequired(historyRequired);
 
-                model.Property(x => x.ModificationDate)
-                     .HasColumnName("Modification Date")
+                model.Property(x => x.CreatedAt)
+                     .HasColumnName("CreatedAt")
+                     .HasColumnOrder(98)
+                     .IsRequired(dateRequired);
+
+                model.Property(x => x.UpdatedAt)
+                     .HasColumnName("UpdatedAt")
                      .HasColumnOrder(99)
                      .IsRequired(dateRequired);
             });

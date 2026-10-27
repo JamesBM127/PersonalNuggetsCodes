@@ -22,7 +22,7 @@ namespace JBMDatabase.UnitOfWork
                 try
                 {
                     //VAR used just to dev see the tracked itens before save.
-                    var trackedItens = Track();
+                    //var trackedItens = Track();
 
                     result = await Context.SaveChangesAsync() > 0;
 

@@ -4,7 +4,10 @@ namespace JBMDatabase.Data.DataSettings
 {
     public static class BaseEntityDataSettings
     {
-        public static void BaseEntityModelBuilder<TEntity>(this ModelBuilder modelBuilder, string columnName = "Id", int columnOrder = 1, bool isRequired = true) where TEntity : BaseEntity
+        public static void BaseEntityModelBuilder<TEntity>(this ModelBuilder modelBuilder, 
+                                                                string columnName = "Id", 
+                                                                int columnOrder = 1, 
+                                                                bool isRequired = true) where TEntity : BaseEntity
         {
             modelBuilder.Entity<TEntity>(model =>
             {

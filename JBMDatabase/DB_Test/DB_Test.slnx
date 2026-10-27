@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../JBMDatabase/JBMDatabase.csproj" />
+  <Project Path="DB_Test.csproj" />
+</Solution>
