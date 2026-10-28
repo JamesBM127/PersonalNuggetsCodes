@@ -7,5 +7,6 @@ namespace JBMDatabase
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public HistoryType HistoryType { get; set; }
+        public bool Active { get; set; }
     }
 }

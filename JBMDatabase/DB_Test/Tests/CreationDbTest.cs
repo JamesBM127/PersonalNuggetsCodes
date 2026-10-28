@@ -1,7 +1,7 @@
 ﻿using JBMDatabase.Enum;
 using JBMDatabase.UnitOfWork;
 
-namespace DB_Test
+namespace DB_Test.Tests
 {
     public class Tests
     {
@@ -11,9 +11,9 @@ namespace DB_Test
         [SetUp]
         public void Setup()
         {
-            string connectionString = "Server=.;Database=MinhaBase;User Id=sa;Password=sa123456;Encrypt=True;TrustServerCertificate=True;";
-            Context = DB_Settings.GetAndCreateDbContext<TestContext>(DatabaseOptions.SqlServer, connectionString);
-            UoW = new UoW(Context);
+            GlobalTools.CreateUoW();
+            Context = GlobalTools.Context;
+            UoW = GlobalTools.GetUoW();
         }
 
         [TearDown]

@@ -1,8 +1,9 @@
 ﻿using JBMDatabase;
 
-namespace DB_Test
+namespace DB_Test.Tests
 {
     public class BaseHistoryEntityTest : BaseHistoryEntity
     {
+
     }
 }

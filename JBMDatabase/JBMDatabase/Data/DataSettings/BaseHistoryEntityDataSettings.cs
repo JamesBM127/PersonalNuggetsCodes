@@ -4,7 +4,10 @@ namespace JBMDatabase.Data.DataSettings
 {
     public static class BaseHistoryEntityDataSettings
     {
-        public static void BaseHistoryEntityBuilder<TEntity>(this ModelBuilder modelBuilder, bool dateRequired = true, bool historyRequired = true) where TEntity : BaseHistoryEntity
+        public static void BaseHistoryEntityBuilder<TEntity>(this ModelBuilder modelBuilder, 
+                                                                  bool dateRequired = true,
+                                                                  bool historyRequired = true,
+                                                                  bool activeRequired = true) where TEntity : BaseHistoryEntity
         {
             modelBuilder.BaseEntityModelBuilder<TEntity>();
 
@@ -24,6 +27,11 @@ namespace JBMDatabase.Data.DataSettings
                 model.Property(x => x.UpdatedAt)
                      .HasColumnName("UpdatedAt")
                      .HasColumnOrder(99)
+                     .IsRequired(dateRequired);
+
+                model.Property(x => x.Active)
+                     .HasColumnName("Active")
+                     .HasColumnOrder(100)
                      .IsRequired(dateRequired);
             });
         }
