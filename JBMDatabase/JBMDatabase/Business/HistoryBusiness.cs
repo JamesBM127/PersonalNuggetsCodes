@@ -21,7 +21,21 @@ namespace JBMDatabase.Business
         {
             entity.UpdatedAt = DateTime.Now;
             entity.HistoryType = Enum.HistoryType.Update;
+            return Update(entity);
+        }
 
+        public bool DeleteSoftHistoryAsync<TEntity>(TEntity entity) where TEntity : BaseHistoryEntity
+        {
+            entity.UpdatedAt = DateTime.Now;
+            entity.Active = false;
+            entity.HistoryType = Enum.HistoryType.Delete;
+
+            return Update(entity);
+        }
+
+        public bool SetActiveEntityHistory<TEntity>(TEntity entity, bool active = true) where TEntity : BaseHistoryEntity
+        {
+            entity.Active = active;
             return Update(entity);
         }
     }
