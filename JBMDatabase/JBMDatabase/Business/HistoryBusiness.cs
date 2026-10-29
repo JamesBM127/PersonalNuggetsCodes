@@ -16,5 +16,13 @@ namespace JBMDatabase.Business
 
             return await AddAsync(entity);
         }
+
+        public bool UpdateHistoryAsync<TEntity>(TEntity entity) where TEntity : BaseHistoryEntity
+        {
+            entity.UpdatedAt = DateTime.Now;
+            entity.HistoryType = Enum.HistoryType.Update;
+
+            return Update(entity);
+        }
     }
 }

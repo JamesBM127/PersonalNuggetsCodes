@@ -27,12 +27,23 @@ namespace DB_Test.Tests
         [Test]
         public async Task Add_BaseHistoryBusiness_Sucess()
         {
-            DateTime now = DateTime.Now;
-
             BaseEntityTest baseEntity = new();
 
-            bool added = await Business.AddHistoryAsync(baseEntity, false);
+            bool added = await Business.AddHistoryAsync(baseEntity);
             bool saved = await Business.CommitAsync(added);
+
+            Assert.That(saved, Is.True);
+        }
+
+        [Test]
+        public async Task Update_BaseHistoryBusiness_Sucess()
+        {
+            IReadOnlyCollection<BaseEntityTest> entities = await Business.ListAsync<BaseEntityTest>();
+            BaseEntityTest? entity = entities.FirstOrDefault();
+            entity.Active = !entity.Active;
+            
+            bool updated = Business.UpdateHistoryAsync(entity);
+            bool saved = await Business.CommitAsync(updated);
 
             Assert.That(saved, Is.True);
         }
