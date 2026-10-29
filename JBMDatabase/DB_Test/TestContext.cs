@@ -1,8 +1,6 @@
-﻿using DB_Test.Tests;
-using JBMDatabase;
+﻿using DB_Test.Entity;
 using JBMDatabase.Data.DataSettings;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
 
 namespace DB_Test
 {
@@ -14,8 +12,8 @@ namespace DB_Test
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.BaseHistoryEntityBuilder<BaseHistoryEntityTest>();
-            modelBuilder.Entity<BaseHistoryEntityTest>(model =>
+            modelBuilder.BaseHistoryEntityBuilder<BaseEntityTest>();
+            modelBuilder.Entity<BaseEntityTest>(model =>
             {
                 model.ToTable("BaseTest");
             });
