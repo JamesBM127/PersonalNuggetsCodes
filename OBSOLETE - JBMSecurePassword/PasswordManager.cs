@@ -4,6 +4,7 @@ namespace JBMSecurePassword
 {
     public class PasswordManager
     {
+        [Obsolete]
         public static string GenerateSalt()
         {
             byte[] salt = new byte[32];
@@ -14,6 +15,7 @@ namespace JBMSecurePassword
             return Convert.ToBase64String(salt);
         }
 
+        [Obsolete]
         public static string HashPassword(string password, string salt)
         {
             //byte[] saltBytes = Convert.FromBase64String(salt);
@@ -26,6 +28,7 @@ namespace JBMSecurePassword
             }
         }
 
+        [Obsolete]
         public static bool AuthenticatePassword(string password, string salt, string hashedPassword)
         {
             string hashedInput = HashPassword(password, salt);
