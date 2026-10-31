@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../JBM_PSSDB/JBM_PSSDB.csproj" />
+  <Project Path="TEST_PSSDB.csproj" />
+</Solution>
